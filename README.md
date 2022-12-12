@@ -1,54 +1,31 @@
-# Todo
-Curl
+# Pre-requisite
+Install Docker & setup redis and start the redis container.
 
+# CURL Commands
 
-## Getting started
+## To create a todo task
+curl --location --request POST 'http://localhost:8080/todo' \
+--header 'Content-Type: application/json' \
+--data-raw '{     
+    "userId":1,
+    "description": "Create a marketing campaign list 132",
+    "dueDate": "2022-12-09",
+    "state": "TODO"
+}'
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## To get the todo's for a given user
+curl --location --request GET 'http://localhost:8080/todo/user/1' \
+--header 'Content-Type: application/json'
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/rameshappmax/todo.git
-git branch -M main
-git push -uf origin main
-```
-
-## CURL Commands
-
+## To get all the Todo's
 curl --location --request GET 'localhost:8080/todo/all'
 
-curl --location --request POST 'localhost:8080/todo' \
---header 'Content-Type: application/json' \
---data-raw '{
-     "taskId": "2",
-    "description": "Test1",
-    "dueDate": "2022-04-01",
-    "state": "DONE"
-}'
-
-
-curl --location --request PUT 'localhost:8080/todo/2' \
+## To update a specific Todo
+curl --location --request PUT 'localhost:8080/todo/1_2' \
 --header 'Content-Type: application/json' \
 --data-raw '{
         "taskId": 1,
         "description": "sdfdsfds",
-        "dueDate": "2022-04-01",
+        "dueDate": "2023-04-01",
         "state": "IN_PROGRESS"
 }'
-
-curl --location --request PUT 'localhost:8080/todo/2' \
---header 'Content-Type: application/json' \
---data-raw '{
-        "taskId": 1,
-        "description": "sdfdsfds",
-        "dueDate": "2022-04-01",
-        "state": "IN_PROGRESS"
-}'
-
